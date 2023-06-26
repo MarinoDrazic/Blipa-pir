@@ -6,7 +6,7 @@ export async function GET() {
 
   // returns all invites
   const invites = await db.collection("invites").get();
-  const inviteIds = invites.docs.map((invite) =>
+  const inviteIds = invites.docs.map((invite: any) =>
     Object.assign({}, { id: invite.id }, invite.data())
   );
 
