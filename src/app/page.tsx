@@ -68,6 +68,8 @@ export default function Home() {
   const inviteControls = useAnimationControls();
 
   useEffect(() => {
+    document.body.scrollTop = 0;
+    document.body.style.overflow = "hidden";
     inviteControls.start({
       scale: [0.95],
       transition: {
@@ -136,6 +138,7 @@ export default function Home() {
               pozadinaControls.start({
                 display: "none",
               });
+              document.body.style.overflow = "auto";
             });
           inviteControls.start({
             scale: [0.95, 1.1],
