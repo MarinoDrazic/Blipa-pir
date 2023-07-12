@@ -1,27 +1,87 @@
+"use client";
+
 import Image from "next/image";
 import { Sacramento, Open_Sans } from "next/font/google";
+import { Guest, Invite } from "@/types/types";
+import { useState } from "react";
 
 const greatVibesFont = Sacramento({
   weight: "400",
   subsets: ["latin"],
+  variable: "--great-vibes",
 });
 
 const openSansFont = Open_Sans({
   weight: "400",
   subsets: ["latin"],
+  variable: "--open-sans",
 });
 
+const timeTable = [
+  {
+    time: "16:30",
+    event: "TRATAMENAT ZRNO SOLI",
+    location: "UVALA BALUNI 8, 21000 SPLIT",
+  },
+  {
+    time: "19:00",
+    event: "OBRED VJENČANJA",
+    location: "CRKVA SV.STJEPANA, SUSTIPAN",
+  },
+  {
+    time: "20:30",
+    event: "PIĆE DOBRODOŠLICE",
+    location: "RESTORAN POLJUD",
+  },
+  {
+    time: "21:30",
+    event: "VEČERA",
+    location: "RESTORAN POLJUD",
+  },
+];
+const dummyInvitee: Invite = {
+  id: "1",
+  guests: [
+    {
+      id: "1",
+      name: "Marino Dražić",
+      coming: false,
+    },
+    {
+      id: "2",
+      name: "Magda Franjo",
+      coming: false,
+    },
+  ],
+  responded: false,
+  inviteCode: "123456-hehe-haha-123456",
+};
+
 export default function Home() {
+  const [invite, setInvite] = useState<Invite>(dummyInvitee);
+
+  const handleComing = (guest: Guest, isComing: boolean) => {
+    const newGuests = invite.guests.map((g) => {
+      if (g.id === guest.id) {
+        return { ...g, coming: isComing };
+      }
+      return g;
+    });
+    setInvite({ ...invite, guests: newGuests });
+  };
+
   return (
-    <main className="bg-white w-screen min-h-screen flex ">
+    <main
+      className={`${greatVibesFont.variable} ${openSansFont.variable} bg-white w-screen min-h-screen flex `}
+    >
       <div
         className={
           "flex flex-col h-100 mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-slate-400"
         }
         style={{
-          width: "420px",
+          minWidth: "500px",
+          maxWidth: "600px",
           marginTop: "40px",
-          marginBottom: "40px",
           background: "#FDFCF8",
         }}
       >
@@ -37,28 +97,29 @@ export default function Home() {
           className="text-6xl w-100 flex flex-col justify-center items-center m-24 mb-10 gap-6"
           style={{ marginTop: "-40px" }}
         >
-          <h1 className={greatVibesFont.className}>Filipa</h1>
+          <h1 className="font-vibes">Filipa</h1>
           <p
             style={{ fontSize: "20px", marginLeft: "40px", marginTop: "-10px" }}
           >
             i
           </p>
-          <h1
-            className={greatVibesFont.className}
-            style={{ marginTop: "-40px" }}
-          >
+          <h1 className="font-vibes" style={{ marginTop: "-40px" }}>
             Nikola
           </h1>
         </div>
         <div className=" w-100 flex flex-col justify-center items-center gap-6">
           <h1
-            className={openSansFont.className}
+            className="font-sans"
             style={{ fontWeight: "bold", letterSpacing: "3px" }}
           >
-            DRAGI NAŠI,
+            DRAGI{" "}
+            {invite.guests
+              .map((g) => g.name.split(" ")[0].toUpperCase())
+              .join(" I ")}
+            ,
           </h1>
           <p
-            className={openSansFont.className}
+            className="font-sans"
             style={{
               color: "#333",
               fontWeight: "400",
@@ -71,7 +132,7 @@ export default function Home() {
         </div>
         <div className="w-100 flex flex-col justify-center items-center  m-10">
           <h1
-            className={openSansFont.className}
+            className="font-sans"
             style={{
               fontWeight: "700",
               letterSpacing: "0.15em",
@@ -82,143 +143,43 @@ export default function Home() {
           </h1>
         </div>
 
-        <div className="w-100 flex flex-col justify-center items-start gap-6 ml-10">
-          <div className="flex w-full">
-            <p
-              style={{
-                fontWeight: "600",
-                letterSpacing: "2px",
-                marginBottom: "0.26em",
-                fontSize: "1.07em",
-              }}
-              className="mr-6"
-            >
-              16:30
-            </p>
-            <div className="flex flex-col">
+        <div className="w-100 flex flex-col justify-center items-start gap-6 mt-8">
+          {timeTable.map((time, index) => (
+            <div className="flex w-96 m-auto " key={time.event}>
               <p
                 style={{
                   fontWeight: "600",
                   letterSpacing: "2px",
-                  marginBottom: "0.26em",
                   fontSize: "1.07em",
                 }}
+                className="mr-6 flex-3"
               >
-                TRATAMENAT ZRNO SOLI
+                {time.time}
               </p>
-              <p
-                style={{
-                  fontWeight: "300",
-                  letterSpacing: "2px",
-                  fontSize: "12px",
-                }}
-              >
-                UVALA BALUNI 8, 21000 SPLIT
-              </p>
+              <div className="flex flex-col flex-1">
+                <p
+                  style={{
+                    fontWeight: "600",
+                    letterSpacing: "2px",
+                    marginBottom: "0.26em",
+                    fontSize: "1.07em",
+                  }}
+                >
+                  {time.event}
+                </p>
+                <p
+                  style={{
+                    fontWeight: "300",
+                    letterSpacing: "2px",
+                    fontSize: "12px",
+                  }}
+                >
+                  {time.location}
+                </p>
+              </div>
             </div>
-          </div>
-          <div className="flex w-full">
-            <p
-              style={{
-                fontWeight: "600",
-                letterSpacing: "2px",
-                marginBottom: "0.26em",
-                fontSize: "1.07em",
-              }}
-              className="mr-6"
-            >
-              19:00
-            </p>
-            <div className="flex flex-col">
-              <p
-                style={{
-                  fontWeight: "600",
-                  letterSpacing: "2px",
-                  marginBottom: "0.26em",
-                  fontSize: "1.07em",
-                }}
-              >
-                OBRED VJENČANJA
-              </p>
-              <p
-                style={{
-                  fontWeight: "300",
-                  letterSpacing: "2px",
-                  fontSize: "12px",
-                }}
-              >
-                CRKVA SV.STJEPANA, SUSTIPAN
-              </p>
-            </div>
-          </div>
-          <div className="flex w-full">
-            <p
-              style={{
-                fontWeight: "600",
-                letterSpacing: "2px",
-                marginBottom: "0.26em",
-                fontSize: "1.07em",
-              }}
-              className="mr-6"
-            >
-              20:30
-            </p>
-            <div className="flex flex-col">
-              <p
-                style={{
-                  fontWeight: "600",
-                  letterSpacing: "2px",
-                  marginBottom: "0.26em",
-                  fontSize: "1.07em",
-                }}
-              >
-                PIĆE DOBRODOŠLICE
-              </p>
-              <p
-                style={{
-                  fontWeight: "300",
-                  letterSpacing: "2px",
-                  fontSize: "12px",
-                }}
-              >
-                RESTORAN POLJUD
-              </p>
-            </div>
-          </div>
-          <div className="flex w-full">
-            <p
-              style={{
-                fontWeight: "600",
-                letterSpacing: "2px",
-                marginBottom: "0.26em",
-                fontSize: "1.07em",
-              }}
-              className="mr-6"
-            >
-              21:00
-            </p>
-            <div className="flex flex-col">
-              <p
-                style={{
-                  fontWeight: "600",
-                  letterSpacing: "2px",
-                  marginBottom: "0.26em",
-                  fontSize: "1.07em",
-                }}
-              >
-                VEČERA, PJESMA I PLES
-              </p>
-              <p
-                style={{
-                  fontWeight: "300",
-                  letterSpacing: "2px",
-                  fontSize: "12px",
-                }}
-              >
-                RESTORAN POLJUD
-              </p>
-            </div>
-          </div>
+          ))}
+
           <div>
             <Image
               src="/images/flower_one.png"
@@ -228,11 +189,11 @@ export default function Home() {
             />
           </div>
           <div
-            className="w-full flex flex-col  justify-center mb-0 m-10"
+            className="w-full flex flex-col  justify-center items-center mb-0"
             style={{ marginTop: "-150px" }}
           >
             <p
-              className={openSansFont.className}
+              className="font-sans"
               style={{
                 color: "#333",
                 fontWeight: "400",
@@ -247,23 +208,44 @@ export default function Home() {
               </span>
             </p>
           </div>
-          <div className="flex flex-col w-full">
-            <input
-              type="text"
-              placeholder="Upišite imena tko dolazi"
-              className="px-3 py-2 ml-3 border border-gray-300 rounded-md w-5/6 focus:outline-none focus:border-indigo-500"
-              style={{ backgroundColor: "#FDFCF8" }}
-            />
-            <textarea
-              placeholder="Opcionalno: Vaša poruka, pitanje, info o posebnoj prehrani, želja ili pozdrav :)"
-              className="px-3 py-2 ml-3 border border-gray-300 rounded-md w-5/6 focus:outline-none focus:border-indigo-500"
-              rows={3}
-              style={{ backgroundColor: "#FDFCF8" }}
-            />
-            <div className="flex items-center mb-4 mt-4 ml-4">
-              <p className="mr-2">Smještaj</p>
-              <div className="ml-auto flex w-3/5">
-                <button className=" px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500">
+          <div className="flex flex-col gap-4 w-full">
+            {invite.guests.map((guestInvite) => (
+              <div key={guestInvite.name}>
+                <div className="flex flex-row items-center mx-10 p-2 shadow-slate-400">
+                  <div className="flex-1">{guestInvite.name}</div>
+                  <div className="flex-2 flex flex-row h-10 gap-2">
+                    <button
+                      className={`px-3 py-2 border rounded-md  ${
+                        guestInvite.coming
+                          ? "border-indigo-500 border-4"
+                          : "border-gray-300"
+                      }}`}
+                      onClick={() => {
+                        handleComing(guestInvite, true);
+                      }}
+                    >
+                      Dolazim
+                    </button>
+                    <button
+                      className={`px-3 py-2 border rounded-md  ${
+                        !guestInvite.coming
+                          ? "border-indigo-500 border-4"
+                          : "border-gray-300"
+                      }}`}
+                      onClick={() => {
+                        handleComing(guestInvite, false);
+                      }}
+                    >
+                      Ne dolazim
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+            <div className="flex flex-row items-center  mx-10 p-2 ml-20 shadow-slate-400">
+              <p className="flex-1">Smještaj</p>
+              <div className="flex-2 flex flex-row h-10 gap-2">
+                <button className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500">
                   Može
                 </button>
                 <button className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500">
@@ -272,9 +254,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="flex flex-col items-center mt-5 ml-10">
+          <div className="flex flex-col m-auto items-center ">
             <h2
-              className={openSansFont.className}
+              className="font-sans mt-16"
               style={{
                 fontWeight: "bold",
                 letterSpacing: "3px",
@@ -298,14 +280,9 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div>
-            <h1
-              className={greatVibesFont.className}
-              style={{ fontSize: "40px" }}
-            >
-              Veselimo se vašem dolasku!
-            </h1>
-          </div>
+          <h1 className="font-vibes m-auto" style={{ fontSize: "40px" }}>
+            Veselimo se vašem dolasku!
+          </h1>
         </div>
         <div>
           <Image
