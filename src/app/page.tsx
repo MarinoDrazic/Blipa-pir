@@ -1,8 +1,10 @@
+"use client";
 import Image from "next/image";
 import { Sacramento, Open_Sans } from "next/font/google";
 import { Guest, Invite } from "@/types/types";
-import { useState } from "react";
+import { use, useEffect, useState } from "react";
 import GuestTable from "@/components/guestTable";
+import { motion, useAnimationControls } from "framer-motion";
 
 const greatVibesFont = Sacramento({
   weight: "400",
@@ -40,6 +42,7 @@ const timeTable = [
     location: "RESTORAN POLJUD",
   },
 ];
+
 const dummyInvitee: Invite = {
   id: "1",
   guests: [
@@ -59,88 +62,209 @@ const dummyInvitee: Invite = {
 };
 
 export default function Home() {
+  const topControls = useAnimationControls();
+  const botControls = useAnimationControls();
+  const pozadinaControls = useAnimationControls();
+  const inviteControls = useAnimationControls();
+
+  useEffect(() => {
+    inviteControls.start({
+      scale: [0.95],
+      transition: {
+        duration: 1,
+      },
+    });
+    topControls.start({
+      rotateX: [-15, 20, 20, -15],
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut",
+        repeat: Infinity,
+      },
+    });
+    setTimeout(() => {
+      pozadinaControls.start({
+        y: ["0px", "-150px", "-200px", "-250px"],
+        transition: {
+          duration: 1.5,
+          ease: "easeInOut",
+        },
+      });
+      topControls
+        .start({
+          rotateX: 180,
+          y: ["0px", "10px", "20px", "30px", "60px", "100px"],
+          transition: {
+            duration: 1,
+            ease: "easeInOut",
+          },
+          transitionEnd: {
+            position: "relative",
+            zIndex: 0,
+          },
+        })
+        .then(() => {
+          pozadinaControls.start({
+            y: ["-250px", "1200px"],
+            transition: {
+              duration: 2,
+              ease: "easeInOut",
+            },
+          });
+          topControls.start({
+            y: ["100px", "1200px"],
+            transition: {
+              duration: 2,
+              ease: "easeInOut",
+            },
+          });
+          botControls
+            .start({
+              y: ["0px", "200px", "1200px"],
+              transition: {
+                duration: 2,
+                ease: "easeInOut",
+              },
+            })
+            .then(() => {
+              botControls.start({
+                display: "none",
+              });
+              topControls.start({
+                display: "none",
+              });
+              pozadinaControls.start({
+                display: "none",
+              });
+            });
+          inviteControls.start({
+            scale: [0.95, 1.1],
+            transition: {
+              duration: 2,
+            },
+          });
+        });
+    }, 3000);
+  }, []);
+
   return (
     <main
-      className={`${greatVibesFont.variable} ${openSansFont.variable} bg-white w-screen min-h-screen `}
+      className={`${greatVibesFont.className} ${openSansFont.className} bg-white w-screen min-h-screen `}
     >
+      {/* A self opening wedding envelope */}
       <div
-        className={
-          "flex flex-col h-100 mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-slate-400"
-        }
         style={{
           minWidth: "400px",
           maxWidth: "600px",
           background: "#FDFCF8",
+          position: "relative",
+          margin: "auto",
         }}
       >
-        <div>
-          <Image
-            src="/images/flower_top2.png"
-            alt="hero"
-            width={600}
-            height={600}
-          />
-        </div>
-        <div
-          className="text-6xl w-100 flex flex-col justify-center items-center m-24 mb-10 gap-6"
-          style={{ marginTop: "-40px" }}
-        >
-          <h1 className="font-vibes">Filipa</h1>
-          <p
-            style={{ fontSize: "20px", marginLeft: "40px", marginTop: "-10px" }}
-          >
-            i
-          </p>
-          <h1 className="font-vibes" style={{ marginTop: "-40px" }}>
-            Nikola
-          </h1>
-        </div>
-        <div className=" w-100 flex flex-col justify-center items-center gap-6">
-          <h1
-            className="font-sans"
-            style={{ fontWeight: "bold", letterSpacing: "3px" }}
-          >
-            DRAGI{" "}
-            {dummyInvitee.guests
-              .map((g) => g.name.split(" ")[0].toUpperCase())
-              .join(" I ")}
-            ,
-          </h1>
-          <p
-            className="font-sans"
-            style={{
-              color: "#333",
-              fontWeight: "400",
-              letterSpacing: "0.05em",
-              fontSize: "14px",
-            }}
-          >
-            pozivamo vas da budete dio našeg velikog dana!
-          </p>
-        </div>
-        <div className="w-100 flex flex-col justify-center items-center  m-10">
-          <h1
-            className="font-sans"
-            style={{
-              fontWeight: "700",
-              letterSpacing: "0.15em",
-              fontSize: "1.21em",
-            }}
-          >
-            PETAK, 25.08.2023.
-          </h1>
-        </div>
+        <motion.div animate={topControls} className="z-20 relative">
+          <div className="absolute top-0 left-0 w-full ">
+            <img src="/images/vrh.svg" alt="envelope" className="w-full" />
+          </div>
+        </motion.div>
 
-        <GuestTable dummyInvitee={dummyInvitee} timeTable={timeTable} />
-        <div>
-          <Image
-            src="/images/flower_bottom.png"
-            alt="hero"
-            width={600}
-            height={600}
-          />
-        </div>
+        <motion.div animate={botControls} className="z-30 relative">
+          <div className="absolute top-0 left-0 w-full ">
+            <img src="/images/dno.svg" alt="envelope" className="w-full" />
+          </div>
+        </motion.div>
+        <motion.div animate={pozadinaControls} className="z-0 relative">
+          <div className="absolute top-0 left-0 w-full ">
+            <img src="/images/pozadina.svg" alt="envelope" className="w-full" />
+          </div>
+        </motion.div>
       </div>
+
+      {/* The actual invitation */}
+      <motion.div animate={inviteControls}>
+        <div
+          className={
+            "flex flex-col h-100 mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-slate-400 scale-90 relative"
+          }
+          style={{
+            minWidth: "400px",
+            maxWidth: "600px",
+            background: "#FDFCF8",
+            zIndex: 10,
+          }}
+        >
+          <div>
+            <Image
+              src="/images/flower_top2.png"
+              alt="hero"
+              width={600}
+              height={600}
+            />
+          </div>
+          <div
+            className="text-6xl w-100 flex flex-col justify-center items-center m-24 mb-10 gap-6"
+            style={{ marginTop: "-40px" }}
+          >
+            <h1 className="font-vibes">Filipa</h1>
+            <p
+              style={{
+                fontSize: "20px",
+                marginLeft: "40px",
+                marginTop: "-10px",
+              }}
+            >
+              i
+            </p>
+            <h1 className="font-vibes" style={{ marginTop: "-40px" }}>
+              Nikola
+            </h1>
+          </div>
+          <div className=" w-100 flex flex-col justify-center items-center gap-6">
+            <h1
+              className="font-sans"
+              style={{ fontWeight: "bold", letterSpacing: "3px" }}
+            >
+              DRAGI{" "}
+              {dummyInvitee.guests
+                .map((g) => g.name.split(" ")[0].toUpperCase())
+                .join(" I ")}
+              ,
+            </h1>
+            <p
+              className="font-sans"
+              style={{
+                color: "#333",
+                fontWeight: "400",
+                letterSpacing: "0.05em",
+                fontSize: "14px",
+              }}
+            >
+              pozivamo vas da budete dio našeg velikog dana!
+            </p>
+          </div>
+          <div className="w-100 flex flex-col justify-center items-center  m-10">
+            <h1
+              className="font-sans"
+              style={{
+                fontWeight: "700",
+                letterSpacing: "0.15em",
+                fontSize: "1.21em",
+              }}
+            >
+              PETAK, 25.08.2023.
+            </h1>
+          </div>
+
+          <GuestTable dummyInvitee={dummyInvitee} timeTable={timeTable} />
+          <div>
+            <Image
+              src="/images/flower_bottom.png"
+              alt="hero"
+              width={600}
+              height={600}
+            />
+          </div>
+        </div>
+      </motion.div>
     </main>
   );
 }
