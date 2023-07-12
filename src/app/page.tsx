@@ -9,12 +9,14 @@ const greatVibesFont = Sacramento({
   weight: "400",
   subsets: ["latin"],
   variable: "--great-vibes",
+  display: "swap",
 });
 
 const openSansFont = Open_Sans({
   weight: "400",
   subsets: ["latin"],
   variable: "--open-sans",
+  display: "swap",
 });
 
 const timeTable = [
