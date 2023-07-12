@@ -219,7 +219,18 @@ export default function Home() {
               </p>
             </div>
           </div>
-          <div className="w-full flex flex-col  justify-center mb-0 m-10">
+          <div>
+            <Image
+              src="/images/flower_one.png"
+              alt="hero"
+              width={600}
+              height={600}
+            />
+          </div>
+          <div
+            className="w-full flex flex-col  justify-center mb-0 m-10"
+            style={{ marginTop: "-150px" }}
+          >
             <p
               className={openSansFont.className}
               style={{
