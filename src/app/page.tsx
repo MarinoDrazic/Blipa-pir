@@ -163,18 +163,30 @@ export default function Home() {
       >
         <motion.div animate={topControls} className="z-20 relative">
           <div className="absolute top-0 left-0 w-full ">
-            <img src="/images/vrh.svg" alt="envelope" className="w-full" />
+            <img
+              src="/images/vrh.svg"
+              alt="envelope"
+              className="w-full scale-95"
+            />
           </div>
         </motion.div>
 
         <motion.div animate={botControls} className="z-30 relative">
           <div className="absolute top-0 left-0 w-full ">
-            <img src="/images/dno.svg" alt="envelope" className="w-full" />
+            <img
+              src="/images/dno.svg"
+              alt="envelope"
+              className="w-full  scale-95"
+            />
           </div>
         </motion.div>
         <motion.div animate={pozadinaControls} className="z-0 relative">
           <div className="absolute top-0 left-0 w-full ">
-            <img src="/images/pozadina.svg" alt="envelope" className="w-full" />
+            <img
+              src="/images/pozadina.svg"
+              alt="envelope"
+              className="w-full  scale-95"
+            />
           </div>
         </motion.div>
       </div>
