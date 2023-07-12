@@ -66,15 +66,14 @@ export default function Home() {
   const botControls = useAnimationControls();
   const pozadinaControls = useAnimationControls();
   const inviteControls = useAnimationControls();
+  const [hasStarted, setHasStarted] = useState(true);
 
   useEffect(() => {
     document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     document.body.style.overflow = "hidden";
     inviteControls.start({
-      scale: [0.95],
-      transition: {
-        duration: 1,
-      },
+      scale: [0.8],
     });
     topControls.start({
       rotateX: [-15, 20, 20, -15],
@@ -85,6 +84,8 @@ export default function Home() {
       },
     });
     setTimeout(() => {
+      document.body.scrollTop = 0;
+      setHasStarted(false);
       pozadinaControls.start({
         y: ["0px", "-150px", "-200px", "-250px"],
         transition: {
@@ -138,10 +139,10 @@ export default function Home() {
               pozadinaControls.start({
                 display: "none",
               });
-              document.body.style.overflow = "auto";
+              document.body.style.overflowY = "auto";
             });
           inviteControls.start({
-            scale: [0.95, 1.1],
+            scale: [0.8, 0.85, 0.9, 0.92, 1],
             transition: {
               duration: 2,
             },
@@ -195,10 +196,13 @@ export default function Home() {
       </div>
 
       {/* The actual invitation */}
-      <motion.div animate={inviteControls}>
+      <motion.div
+        animate={inviteControls}
+        className={`${hasStarted ? "scale-90" : ""}`}
+      >
         <div
           className={
-            "flex flex-col h-100 mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-slate-400 scale-90 relative"
+            "flex flex-col h-100 mx-auto shadow-[0_35px_60px_-15px_rgba(0,0,0,0.3)] shadow-slate-400  relative"
           }
           style={{
             minWidth: "400px",
