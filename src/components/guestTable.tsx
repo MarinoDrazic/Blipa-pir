@@ -24,14 +24,18 @@ function GuestTable({
   return (
     <div className="w-100 flex flex-col justify-center items-start gap-6 mt-8">
       {timeTable.map((time, index) => (
-        <div className="flex w-96 m-auto " key={time.event}>
+        <div
+          className="flex m-auto"
+          key={time.event}
+          style={{ width: "22rem" }}
+        >
           <p
             style={{
               fontWeight: "600",
               letterSpacing: "2px",
               fontSize: "1.07em",
             }}
-            className="mr-6 flex-3"
+            className="mr-6 flex-2"
           >
             {time.time}
           </p>

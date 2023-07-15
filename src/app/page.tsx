@@ -76,7 +76,7 @@ export default function Home() {
       scale: [0.8],
     });
     topControls.start({
-      rotateX: [-15, 20, 20, -15],
+      rotateX: [5, 20, 20, 5],
       transition: {
         duration: 1.5,
         ease: "easeInOut",
@@ -158,7 +158,7 @@ export default function Home() {
       {/* A self opening wedding envelope */}
       <div
         style={{
-          minWidth: "400px",
+          minWidth: "370px",
           maxWidth: "600px",
           background: "#FDFCF8",
           position: "relative",
