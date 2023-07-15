@@ -153,7 +153,7 @@ export default function Home() {
 
   return (
     <main
-      className={`${greatVibesFont.className} ${openSansFont.className} bg-white w-screen min-h-screen `}
+      className={`${greatVibesFont.className} ${greatVibesFont.variable} ${openSansFont.className} bg-white w-screen min-h-screen `}
     >
       {/* A self opening wedding envelope */}
       <div
