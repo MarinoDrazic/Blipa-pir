@@ -111,33 +111,7 @@
            id="path384-0"
            sodipodi:nodetypes="ccscsccccc"
            transform="matrix(0.96526734,0,0,0.98292986,3.6656703,1.0267002)" />
-        <text
-           xml:space="preserve"
-           style="font-size:8.72002px;line-height:0.8;font-family:'Book Antiqua';-inkscape-font-specification:'Book Antiqua';text-align:center;letter-spacing:-0.01308px;word-spacing:-0.02289px;text-anchor:middle;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke-width:0.327514"
-           x="106.64877"
-           y="76.873466"
-           id="text998"
-           transform="scale(0.9657591,1.0354549)"><tspan
-             sodipodi:role="line"
-             id="tspan996"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.72002px;font-family:'Vladimir Script';-inkscape-font-specification:'Vladimir Script';stroke-width:0.327515"
-             x="106.64877"
-             y="76.873466"
-             rotate="359.20001 359.20001 359.20001 359.20001 359.20001 359.20001 0"
-             dy="-0.09887255"
-             dx="-0.061795346">Filipa</tspan><tspan
-             sodipodi:role="line"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.72002px;font-family:'Vladimir Script';-inkscape-font-specification:'Vladimir Script';stroke-width:0.327515"
-             x="106.64877"
-             y="84.298851"
-             id="tspan1000"
-             rotate="359.20001 0">i</tspan><tspan
-             sodipodi:role="line"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.72002px;font-family:'Vladimir Script';-inkscape-font-specification:'Vladimir Script';stroke-width:0.327515"
-             x="106.64223"
-             y="91.724236"
-             id="tspan1002"
-             rotate="359.20001 359.20001 359.20001 359.20001 359.20001 359.20001 0">Nikola</tspan></text>
+        
       </g>
     </a>
   </g>
