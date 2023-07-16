@@ -67,6 +67,78 @@ export default function Home() {
   const pozadinaControls = useAnimationControls();
   const inviteControls = useAnimationControls();
   const [hasStarted, setHasStarted] = useState(true);
+  const [openNow, setOpenNow] = useState(false);
+
+  const [animationStarted, setanimationStarted] = useState(false);
+
+  function playOpeningAnimation() {
+    if (animationStarted) return;
+    setanimationStarted(true);
+    document.body.scrollTop = 0;
+    setHasStarted(false);
+    pozadinaControls.start({
+      y: ["0px", "-150px", "-200px", "-250px"],
+      transition: {
+        duration: 1.5,
+        ease: "easeInOut",
+      },
+    });
+    topControls
+      .start({
+        rotateX: 180,
+        y: ["0px", "10px", "20px", "30px", "60px", "100px"],
+        transition: {
+          duration: 1,
+          ease: "easeInOut",
+        },
+        transitionEnd: {
+          position: "relative",
+          zIndex: 0,
+        },
+      })
+      .then(() => {
+        pozadinaControls.start({
+          y: ["-250px", "1200px"],
+          transition: {
+            duration: 2,
+            ease: "easeInOut",
+          },
+        });
+        topControls.start({
+          y: ["100px", "1200px"],
+          transition: {
+            duration: 2,
+            ease: "easeInOut",
+          },
+        });
+        botControls
+          .start({
+            y: ["0px", "200px", "1200px"],
+            transition: {
+              duration: 2,
+              ease: "easeInOut",
+            },
+          })
+          .then(() => {
+            botControls.start({
+              display: "none",
+            });
+            topControls.start({
+              display: "none",
+            });
+            pozadinaControls.start({
+              display: "none",
+            });
+            document.body.style.overflowY = "auto";
+          });
+        inviteControls.start({
+          scale: [0.8, 0.85, 0.9, 0.92, 1],
+          transition: {
+            duration: 2,
+          },
+        });
+      });
+  }
 
   useEffect(() => {
     document.body.scrollTop = 0;
@@ -76,80 +148,23 @@ export default function Home() {
       scale: [0.8],
     });
     topControls.start({
-      rotateX: [5, 20, 20, 5],
+      rotateX: [5, 20, 5, 20, 5, 20, 5],
       transition: {
-        duration: 1.5,
+        duration: 3,
         ease: "easeInOut",
         repeat: Infinity,
       },
     });
     setTimeout(() => {
-      document.body.scrollTop = 0;
-      setHasStarted(false);
-      pozadinaControls.start({
-        y: ["0px", "-150px", "-200px", "-250px"],
-        transition: {
-          duration: 1.5,
-          ease: "easeInOut",
-        },
-      });
-      topControls
-        .start({
-          rotateX: 180,
-          y: ["0px", "10px", "20px", "30px", "60px", "100px"],
-          transition: {
-            duration: 1,
-            ease: "easeInOut",
-          },
-          transitionEnd: {
-            position: "relative",
-            zIndex: 0,
-          },
-        })
-        .then(() => {
-          pozadinaControls.start({
-            y: ["-250px", "1200px"],
-            transition: {
-              duration: 2,
-              ease: "easeInOut",
-            },
-          });
-          topControls.start({
-            y: ["100px", "1200px"],
-            transition: {
-              duration: 2,
-              ease: "easeInOut",
-            },
-          });
-          botControls
-            .start({
-              y: ["0px", "200px", "1200px"],
-              transition: {
-                duration: 2,
-                ease: "easeInOut",
-              },
-            })
-            .then(() => {
-              botControls.start({
-                display: "none",
-              });
-              topControls.start({
-                display: "none",
-              });
-              pozadinaControls.start({
-                display: "none",
-              });
-              document.body.style.overflowY = "auto";
-            });
-          inviteControls.start({
-            scale: [0.8, 0.85, 0.9, 0.92, 1],
-            transition: {
-              duration: 2,
-            },
-          });
-        });
+      setOpenNow(true);
     }, 3000);
   }, []);
+
+  useEffect(() => {
+    if (openNow) {
+      playOpeningAnimation();
+    }
+  }, [openNow]);
 
   return (
     <main
@@ -163,6 +178,9 @@ export default function Home() {
           background: "#FDFCF8",
           position: "relative",
           margin: "auto",
+        }}
+        onClick={() => {
+          setOpenNow(true);
         }}
       >
         <motion.div animate={topControls} className="z-20 relative">
