@@ -1,8 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Sacramento, Open_Sans } from "next/font/google";
-import { Guest, Invite } from "@/types/types";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import GuestTable from "@/components/guestTable";
 import { motion, useAnimationControls } from "framer-motion";
 
@@ -43,24 +42,6 @@ const timeTable = [
   },
 ];
 
-const dummyInvitee: Invite = {
-  id: "1",
-  guests: [
-    {
-      id: "1",
-      name: "Marino Dražić",
-      coming: false,
-    },
-    {
-      id: "2",
-      name: "Magda Franjo",
-      coming: false,
-    },
-  ],
-  responded: false,
-  inviteCode: "123456-hehe-haha-123456",
-};
-
 export default function Home() {
   const topControls = useAnimationControls();
   const botControls = useAnimationControls();
@@ -77,7 +58,7 @@ export default function Home() {
     document.body.scrollTop = 0;
     setHasStarted(false);
     pozadinaControls.start({
-      y: ["0px", "-150px", "-200px", "-250px"],
+      y: ["-120px", "-200px", "-250px"],
       transition: {
         duration: 1.5,
         ease: "easeInOut",
@@ -203,7 +184,7 @@ export default function Home() {
           </div>
         </motion.div>
         <motion.div animate={pozadinaControls} className="z-0 relative">
-          <div className="absolute top-0 left-0 w-full ">
+          <div className="absolute top-[-50px] left-0 w-full ">
             <img
               src="/images/pozadina.svg"
               alt="envelope"
@@ -287,7 +268,7 @@ export default function Home() {
             </h1>
           </div>
 
-          <GuestTable dummyInvitee={dummyInvitee} timeTable={timeTable} />
+          <GuestTable timeTable={timeTable} />
           <div>
             <Image
               src="/images/flower_bottom.png"

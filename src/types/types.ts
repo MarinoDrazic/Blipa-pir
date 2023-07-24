@@ -1,12 +1,8 @@
 export type Invite = {
   id: string;
-  guests: Guest[];
-  inviteCode: string; // invite code is generated using uuidv4
+  guests: string;
+  smjestaj: boolean;
+  poruka: string;
+  date: string;
   responded: boolean;
-};
-
-export type Guest = {
-  id: string;
-  name: string;
-  coming: boolean;
 };
