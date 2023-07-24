@@ -150,16 +150,20 @@ function GuestTable({
             <p className="flex-1">Smještaj</p>
             <div className="flex-2 flex flex-row h-10 gap-2">
               <button
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className={`px-3 py-2 border border-gray-300 rounded-md ${
+                  smjestaj && "outline-none border-indigo-500"
+                }`}
                 onClick={() => setSmjestaj(true)}
               >
-                Može
+                Da
               </button>
               <button
-                className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+                className={`px-3 py-2 border border-gray-300 rounded-md ${
+                  !smjestaj && "outline-none border-indigo-500"
+                }`}
                 onClick={() => setSmjestaj(false)}
               >
-                Ne, hvala
+                Ne
               </button>
             </div>
           </div>
