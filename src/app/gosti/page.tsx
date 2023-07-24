@@ -47,3 +47,5 @@ export default async function Gosti() {
     </div>
   );
 }
+
+export const revalidate = 0;
