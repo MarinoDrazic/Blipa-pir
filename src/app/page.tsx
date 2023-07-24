@@ -22,7 +22,7 @@ const openSansFont = Open_Sans({
 
 const timeTable = [
   {
-    time: "16:30",
+    time: "17:00",
     event: "TRATAMENAT ZRNO SOLI",
     location: "UVALA BALUNI 8, 21000 SPLIT",
   },
@@ -37,7 +37,7 @@ const timeTable = [
     location: "RESTORAN POLJUD",
   },
   {
-    time: "21:30",
+    time: "21:00",
     event: "VEČERA",
     location: "RESTORAN POLJUD",
   },
@@ -157,7 +157,7 @@ export default function Home() {
     });
     setTimeout(() => {
       setOpenNow(true);
-    }, 3000);
+    }, 1500);
   }, []);
 
   useEffect(() => {
@@ -260,11 +260,7 @@ export default function Home() {
               className="font-sans"
               style={{ fontWeight: "bold", letterSpacing: "3px" }}
             >
-              DRAGI{" "}
-              {dummyInvitee.guests
-                .map((g) => g.name.split(" ")[0].toUpperCase())
-                .join(" I ")}
-              ,
+              DRAGI NAŠI,
             </h1>
             <p
               className="font-sans"

@@ -92,40 +92,18 @@ function GuestTable({
         </p>
       </div>
       <div className="flex flex-col gap-4 w-full">
-        {invite.guests.map((guestInvite) => (
-          <div key={guestInvite.name}>
-            <div className="flex flex-row items-center mx-10 p-2 shadow-slate-400">
-              <div className="flex-1">{guestInvite.name}</div>
-              <div className="flex-2 flex flex-row h-10 gap-2">
-                <button
-                  className={`px-3 py-2 border rounded-md  ${
-                    guestInvite.coming
-                      ? "border-indigo-500 border-4"
-                      : "border-gray-300"
-                  }}`}
-                  onClick={() => {
-                    handleComing(guestInvite, true);
-                  }}
-                >
-                  Dolazim
-                </button>
-                <button
-                  className={`px-3 py-2 border rounded-md  ${
-                    !guestInvite.coming
-                      ? "border-indigo-500 border-4"
-                      : "border-gray-300"
-                  }}`}
-                  onClick={() => {
-                    handleComing(guestInvite, false);
-                  }}
-                >
-                  Ne dolazim
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-        <div className="flex flex-row items-center  mx-10 p-2 ml-20 shadow-slate-400">
+        <div className="flex flex-col items-center mx-10 p-2 ">
+          <input
+            type="text"
+            placeholder="Ime i prezime gostiju"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500 mb-4"
+          />
+          <textarea
+            placeholder="Poruka po želji"
+            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
+          />
+        </div>
+        <div className="flex flex-row items-center  mx-20 p-2 shadow-slate-400">
           <p className="flex-1">Smještaj</p>
           <div className="flex-2 flex flex-row h-10 gap-2">
             <button className="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500">
@@ -136,6 +114,12 @@ function GuestTable({
             </button>
           </div>
         </div>
+        <button
+          className="px-8 py-2 border border-gray-300 rounded-md m-auto focus:outline-none focus:border-#dab6ba backg"
+          style={{ backgroundColor: "#f0dde0", borderColor: "#bb979b" }}
+        >
+          Potvrdi odgovor
+        </button>
       </div>
       <div className="flex flex-col m-auto items-center ">
         <h2
