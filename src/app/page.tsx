@@ -33,11 +33,11 @@ const timeTable = [
   {
     time: "20:30",
     event: "PIĆE DOBRODOŠLICE",
-    location: "RESTORAN POLJUD",
+    location: "RESTORAN POLJUD, POLJUDSKO ŠETALIŠTE 1",
   },
   {
     time: "21:00",
-    event: "VEČERA",
+    event: "SVEČANA VEČERA",
     location: "RESTORAN POLJUD",
   },
 ];
