@@ -174,6 +174,12 @@ function GuestTable({
           >
             Potvrdi odgovor
           </button>
+          <p className="text-sm m-auto flex items-center w-1/2 text-center text-gray-400">
+            Dragi prijatelji i rodbino, želimo vas okupiti što više, ali zbog
+            ograničenog kapaciteta restorana primorani smo vas zamoliti da
+            dođete bez djece. <br />
+            Hvala puno na razumijevanju ❤️
+          </p>
         </div>
       )}
       <div className="flex flex-col m-auto items-center ">
