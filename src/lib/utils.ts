@@ -277,7 +277,7 @@ export const stolovi = {
   stol24: [
     "Marina Erceg",
     "Ante Erceg",
-    "Klara Erceg",
+    "Karla Erceg",
     "Kajo Erceg",
     "Božena Rako",
     "Slavko Rako",

@@ -17,6 +17,16 @@ const openSansFont = Open_Sans({
   variable: "--open-sans",
   display: "swap",
 });
+
+export const metadata = {
+  title: "Naše vjenčanje | Filipa & Nikola",
+  description: "Raspored stolova za naše vjenčanje.",
+  type: "website",
+  date: "2023-08-25",
+  keywords: "Filipa i Nikola",
+  url: "https://filipainikola.com/stolovi",
+};
+
 function Stolovi() {
   return (
     <main
@@ -60,27 +70,26 @@ function Stolovi() {
           </h1>
         </div>
         <div className=" w-100 flex flex-col justify-center items-center gap-6">
-          <h1
-            className="font-sans"
-            style={{ fontWeight: "bold", letterSpacing: "3px" }}
+          <h2
+            className="font-sans text-center"
+            style={{
+              fontWeight: "bold",
+              letterSpacing: "3px",
+              fontSize: "0.7em",
+            }}
           >
             DRAGI NAŠI, DOBRODOŠLI NA NAŠU SVADBU!
-          </h1>
-          <h1
-            className="font-sans"
-            style={{ fontWeight: "bold", letterSpacing: "3px" }}
+          </h2>
+          <h2
+            className="font-sans text-center"
+            style={{
+              fontWeight: "bold",
+              letterSpacing: "3px",
+              fontSize: "0.7em",
+            }}
           >
             ISPOD MOŽETE PRONAĆI RASPORED STOLOVA.
-          </h1>
-          <p
-            className="font-sans"
-            style={{
-              color: "#333",
-              fontWeight: "400",
-              letterSpacing: "0.05em",
-              fontSize: "14px",
-            }}
-          ></p>
+          </h2>
         </div>
         <div className="w-100 flex flex-col justify-center items-center  m-10">
           <StoloviSearch />
