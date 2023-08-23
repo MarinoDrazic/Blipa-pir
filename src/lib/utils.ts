@@ -273,6 +273,8 @@ export const stolovi = {
     "Dijana Čagalj",
     "Ana Marija Wei",
     "Nicolai Wei",
+    "Tonka Lončar",
+    "Stipe Lončar",
   ],
   stol24: [
     "Marina Erceg",
