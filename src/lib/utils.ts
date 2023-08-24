@@ -98,6 +98,8 @@ export const stolovi = {
     "Josip Pavelić",
     "Mladen Perhat",
     "Sonja Gaj Perhat",
+    "Roberto Družijanić",
+    "Marina Družijanić",
   ],
   stol9: [
     "Edi Matić",
@@ -190,8 +192,6 @@ export const stolovi = {
     "Nora Gardašević",
     "Nađa Radović",
     "Duje Radović",
-    "Bruno Doljanin",
-    "Antonia Doljanin",
   ],
   stol17: [
     "Goran Čaljkušić",
@@ -284,6 +284,9 @@ export const stolovi = {
     "Božena Rako",
     "Slavko Rako",
     "Noa Rako",
+    "Bruno Doljanin",
+    "Antonia Doljanin",
+    "Lea Doljanin",
   ],
   stol25: ["Rezervirano za bend"],
   stol26: [
