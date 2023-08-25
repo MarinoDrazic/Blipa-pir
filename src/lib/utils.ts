@@ -258,7 +258,7 @@ export const stolovi = {
     "Ivan Čorić",
     "Ana Čorić",
     "Joško Kerum",
-    "Iva Ivetić Kerum",
+    "Iva Ivetić",
     "Ante Budalić",
     "Katarina Budalić",
     "Gordan Boljat",
